@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro Vendedor</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+  <h2>Registro de Vendedor</h2>
+
+  <input type="email" id="correo" placeholder="Correo electrónico">
+  <input type="password" id="password" placeholder="Contraseña (mínimo 6 caracteres)">
+
+  <label>Sube una foto con tu producto</label>
+  <input type="file" id="foto" accept="image/*">
+
+  <button onclick="registrar()">Continuar</button>
+</div>
+
+<script>
+if (localStorage.getItem("terminos") !== "aceptado") {
+  window.location.href = "index.html";
+}
+
+function registrar() {
+  const correo = document.getElementById("correo").value;
+  const password = document.getElementById("password").value;
+  const foto = document.getElementById("foto").files[0];
+
+  if (!correo.includes("@")) {
+    alert("Correo inválido");
+    return;
+  }
+
+  if (password.length < 6) {
+    alert("La contraseña debe tener mínimo 6 caracteres");
+    return;
+  }
+
+  if (!foto) {
+    alert("Debes subir una foto con tu producto");
+    return;
+  }
+
+  localStorage.setItem("dealerCorreo", correo);
+  localStorage.setItem("dealerPass", password);
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    localStorage.setItem("dealerFoto", e.target.result);
+    window.location.href = "vendedor.html";
+  };
+
+  reader.readAsDataURL(foto);
+}
+</script>
+
+</body>
+</html>

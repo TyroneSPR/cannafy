@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Vendedor</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+  <h2>Panel de Vendedor</h2>
+
+  <p id="correo"></p>
+  <img id="foto" width="100%">
+
+  <button onclick="cerrarSesion()">Cerrar sesión</button>
+</div>
+
+<script>
+if (!localStorage.getItem("dealerCorreo")) {
+  window.location.href = "dealer-login.html";
+}
+
+document.getElementById("correo").innerText =
+  "Correo: " + localStorage.getItem("dealerCorreo");
+
+document.getElementById("foto").src =
+  localStorage.getItem("dealerFoto");
+
+function cerrarSesion() {
+  localStorage.clear();
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

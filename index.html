@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Términos y condiciones</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    .terms-box {
+      max-height: 180px;
+      overflow-y: auto;
+      text-align: justify;
+      font-size: 13px;
+      padding-right: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #333;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .contador {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body class="terms-page">
+
+<div class="container">
+  <h2>Términos y condiciones</h2>
+
+  <div class="terms-box" id="terms">
+    Al acceder, registrarse o utilizar esta plataforma, el usuario declara haber leído, comprendido y aceptado de manera expresa todos los términos y condiciones aquí establecidos. 
+    El usuario reconoce que el uso de esta página se realiza bajo su propia responsabilidad, y acepta que cualquier acción realizada dentro de la plataforma, incluyendo publicaciones, compras, ventas o interacciones con otros usuarios, es de su exclusiva responsabilidad.
+
+    Asimismo, el usuario acepta que la plataforma actúa únicamente como un intermediario digital, por lo que no se responsabiliza por la veracidad de la información publicada por terceros, ni por la calidad, autenticidad o legalidad de los productos ofrecidos. 
+    El usuario asume todos los riesgos derivados del uso del sitio, incluyendo posibles pérdidas económicas, conflictos entre usuarios o cualquier otro inconveniente que pudiera surgir.
+
+    Al aceptar estos términos, el usuario declara ser consciente de que la plataforma no garantiza resultados, transacciones exitosas ni la conducta de otros usuarios. 
+    También acepta que la empresa podrá modificar, suspender o eliminar cualquier contenido o cuenta sin previo aviso si se considera necesario.
+
+    El usuario reconoce que toda interacción realizada dentro de la plataforma queda bajo su propio criterio y responsabilidad, liberando expresamente a la plataforma, sus desarrolladores y administradores de cualquier reclamo, daño o perjuicio directo o indirecto.
+
+    En consecuencia, al continuar, el usuario acepta de forma total e irrevocable todos los términos aquí descritos.
+  </div>
+
+  <div class="contador" id="contador">
+    Debes leer todo el contenido ↓
+  </div>
+
+  <label>
+    <input type="checkbox" id="aceptar" disabled>
+    Declaro que he leído y acepto todos los términos y condiciones
+  </label>
+
+  <button id="btn" class="disabled" onclick="continuar()">Continuar</button>
+</div>
+
+<script>
+const terms = document.getElementById("terms");
+const checkbox = document.getElementById("aceptar");
+const boton = document.getElementById("btn");
+const contador = document.getElementById("contador");
+
+// Detectar scroll hasta el final
+terms.addEventListener("scroll", () => {
+  if (terms.scrollTop + terms.clientHeight >= terms.scrollHeight) {
+    checkbox.disabled = false;
+    contador.innerText = "✔ Ya puedes aceptar los términos";
+  }
+});
+
+// Activar botón solo si marca checkbox
+checkbox.addEventListener("change", () => {
+  if (checkbox.checked) {
+    boton.classList.remove("disabled");
+  } else {
+    boton.classList.add("disabled");
+  }
+});
+
+function continuar() {
+  if (checkbox.checked) {
+    localStorage.setItem("terminos", "aceptado");
+    window.location.href = "rol.html";
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+  <h2>🛒 Bienvenido a la tienda</h2>
+
+  <p>Próximamente verás productos aquí tipo marketplace 🔥</p>
+
+  <button onclick="cerrarSesion()">Cerrar sesión</button>
+</div>
+
+<script>
+if (localStorage.getItem("rol") !== "consumidor") {
+  window.location.href = "rol.html";
+}
+
+function cerrarSesion() {
+  localStorage.clear();
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
